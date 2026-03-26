@@ -1,0 +1,273 @@
+/* =========================================== */
+/* VARIABLES DE AJUSTE FINO — EDITA AQUÍ       */
+/* =========================================== */
+
+:root {
+  /* Constructor — Desktop */
+  --constructor-bottom-desktop: 0px;
+  --constructor-width-desktop: 62%;
+  --constructor-max-height-desktop: calc(100vh - 90px);
+
+  /* Constructor — Tablet */
+  --constructor-bottom-tablet: 0px;
+  --constructor-width-tablet: 62%;
+  --constructor-max-height-tablet: calc(100vh - 90px);
+
+  /* Constructor — Móvil */
+  --constructor-bottom-mobile: 175px;
+  --constructor-width-mobile: 115%;
+  --constructor-right-mobile: -18%;
+  --constructor-max-height-mobile: 88vh;
+}
+
+/* =========================================== */
+/* HERO SECTION                                */
+/* =========================================== */
+
+.hero-section {
+  min-height: 100vh;
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Texto del hero — centrado verticalmente entre navbar y stats bar */
+.hero-section > div:nth-child(4) {
+  position: absolute !important;
+  top: 64px;
+  bottom: 90px;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+}
+
+/* Constructor: anclado al fondo, pegado al borde derecho */
+.hero-constructor-wrapper {
+  bottom: var(--constructor-bottom-desktop);
+  width: var(--constructor-width-desktop);
+  right: 0 !important;
+}
+
+.hero-constructor-img {
+  width: 100%;
+  height: auto;
+  max-height: var(--constructor-max-height-desktop);
+  display: block;
+  margin-left: auto;
+  filter:
+    drop-shadow(-18px 0 35px rgba(0, 0, 0, 0.65))
+    drop-shadow(0 24px 40px rgba(0, 0, 0, 0.55))
+    drop-shadow(-6px 6px 20px rgba(0, 0, 0, 0.4));
+}
+
+.hero-section > div:nth-child(4) h1 {
+  color: white !important;
+}
+
+/* =========================================== */
+/* ANIMACIÓN COUNTER FINALIZADO                */
+/* =========================================== */
+
+@keyframes stat-done {
+  0%   { transform: scale(1); }
+  25%  { transform: scale(1.35); color: #a8d88a; text-shadow: 0 0 18px rgba(140, 210, 100, 0.85); }
+  55%  { transform: scale(0.92); }
+  75%  { transform: scale(1.12); color: #c8f0a8; }
+  100% { transform: scale(1); color: white; text-shadow: none; }
+}
+
+.stat-number-done {
+  animation: stat-done 0.65s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+}
+
+/* =========================================== */
+/* UTILIDADES GLOBALES                         */
+/* =========================================== */
+
+/* Ocultar scrollbar */
+::-webkit-scrollbar { display: none; width: 0; height: 0; }
+html { scrollbar-width: none; -ms-overflow-style: none; }
+
+/* Wrapper mobile del constructor — oculto en desktop */
+.hero-mobile-constructor-wrapper {
+  display: none;
+}
+
+/* Botones hero */
+.hero-buttons a { display: inline-flex; }
+
+/* Body scroll */
+body {
+  overflow-y: scroll !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+html, body { height: 100%; }
+html { overscroll-behavior-y: none; }
+
+/* =========================================== */
+/* HERO — CLASES REUTILIZABLES                 */
+/* =========================================== */
+
+/* Stats bar grid (4-col desktop) */
+.hero-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* Main content area */
+.hero-main-content {
+  max-width: 60%;
+}
+
+/* Mini project card */
+.hero-mini-card {
+  display: block;
+}
+
+/* Hero headline — wrap on mobile */
+.hero-headline {
+  white-space: nowrap;
+}
+
+/* =========================================== */
+/* RESPONSIVE — MÓVIL (≤768px)                 */
+/* =========================================== */
+
+@media (max-width: 768px) {
+  .hero-section {
+    height: 100vh !important;
+    min-height: 100vh;
+  }
+
+  /* Gradiente oscuro sobre la zona del texto en mobile */
+  .hero-section::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 15;
+    pointer-events: none;
+    background:
+      linear-gradient(to bottom,
+        rgba(5,10,4,0.55) 0%,
+        rgba(5,10,4,0.72) 40%,
+        rgba(5,10,4,0.30) 70%,
+        transparent 100%
+      ),
+      linear-gradient(to right,
+        rgba(5,10,4,0.80) 0%,
+        rgba(5,10,4,0.55) 55%,
+        transparent 100%
+      );
+  }
+
+  .hero-constructor-wrapper {
+    display: block !important;
+    bottom: var(--constructor-bottom-mobile) !important;
+    width: var(--constructor-width-mobile) !important;
+    right: var(--constructor-right-mobile) !important;
+    z-index: 25 !important;
+  }
+
+  .hero-constructor-img {
+    max-height: var(--constructor-max-height-mobile) !important;
+  }
+
+  .hero-section > div:nth-child(4) {
+    position: absolute !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    padding-top: 80px !important;
+    padding-bottom: 220px !important;
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+    z-index: 18 !important;
+  }
+
+  .hero-section > div:nth-child(4) > div {
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  .hero-section > div:nth-child(4) p {
+    display: block !important;
+    font-size: 0.875rem !important;
+    line-height: 1.5 !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .hero-section > div:nth-child(4) h1 {
+    font-size: 1.75rem !important;
+    line-height: 1.2 !important;
+    margin-bottom: 0.75rem !important;
+    text-shadow: 0 2px 16px rgba(0,0,0,0.8) !important;
+  }
+
+  .hero-section > div:nth-child(4) p {
+    text-shadow: 0 1px 8px rgba(0,0,0,0.9) !important;
+  }
+
+  .hero-buttons {
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+
+  .hero-buttons a {
+    width: 100% !important;
+    text-align: center !important;
+  }
+
+  .hero-mobile-constructor-wrapper {
+    display: none !important;
+  }
+
+  /* Stats bar: 2×2 on mobile */
+  .hero-stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* Hero content: full width on mobile, taller stats bar */
+  .hero-main-content {
+    max-width: 100% !important;
+    padding-bottom: 260px !important;
+  }
+
+  /* Hero headline: allow wrap on mobile */
+  .hero-headline {
+    white-space: normal !important;
+    font-size: clamp(34px, 9vw, 52px) !important;
+  }
+
+  /* Hide mini project card on mobile */
+  .hero-mini-card {
+    display: none !important;
+  }
+
+  /* Hero stat item: smaller padding on mobile */
+  .hero-stat-item {
+    padding: 16px 14px !important;
+  }
+}
+
+/* =========================================== */
+/* RESPONSIVE — TABLET (769px – 1024px)        */
+/* =========================================== */
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hero-constructor-wrapper {
+    width: var(--constructor-width-tablet) !important;
+    bottom: var(--constructor-bottom-tablet) !important;
+    right: 0 !important;
+  }
+
+  .hero-constructor-img {
+    max-height: var(--constructor-max-height-tablet) !important;
+  }
+}
